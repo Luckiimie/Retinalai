@@ -116,7 +116,8 @@ else:
         "View Analysis",
         "Search History",
         "Notifications",
-        "Download Report"
+        "Download Report",
+        "Web Dashboard"
     ])
 
     if menu == "Create Patient":
@@ -236,3 +237,13 @@ else:
                     file_name=f"report_{patient_id}.pdf",
                     mime="application/pdf"
                 )
+
+    elif menu == "Web Dashboard":
+        st.header("Interactive Web Dashboard")
+        import streamlit.components.v1 as components
+
+        # Load combined HTML with embedded manifest, CSS, JS and service worker
+        with open("dashboard.html", "r", encoding="utf-8") as f:
+            html_content = f.read()
+
+        components.html(html_content, height=800, scrolling=True)
